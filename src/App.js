@@ -31,28 +31,28 @@ function App() {
   
   if (jokeObj.joke !== undefined) {
     if (loading) {
-      return (<div className={"App"}>
+      return (<div className={"App"}><div className={"container"}>
       <h1>. . . loading</h1>
       <button onClick={getJoke}>Get Joke</button>
-      </div>)
+      </div></div>)
     }
     return (
-      <div className={"App"}>
+      <div className={"App"}><div className={"container"}>
       <h1>{jokeObj.joke}</h1>
       <button onClick={getJoke}>Get Joke</button>
-      </div>
+      </div></div>
     )
   } else {
     if (loading) {
-      return (<div className={"App"}>
+      return (<div className={"App"}><div className={"container"}>
       <h1>. . . loading</h1>
       <button onClick={getJoke}>Get Joke</button>
-      </div>)
+      </div></div>)
     }
-    return (<div className={"App"}><h1>{jokeObj.setup}</h1><hr/>
+    return (<div className={"App"}><div className={"container"}><h1>{jokeObj.setup}</h1><hr/>
     {showDel ? <h2>{jokeObj.delivery}</h2> : <button onClick={()=>setShowDel(true)}>Show</button>}
     <hr/>
-    <button onClick={getJoke}>Get Joke</button></div>)
+    <button onClick={getJoke}>Get Joke</button></div></div>)
   }
 }
 
