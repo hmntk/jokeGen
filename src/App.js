@@ -1,6 +1,6 @@
 import './App.css';
 import axios from "axios";
-import {useState, useEffect} from "react";
+import {useState} from "react";
 
 function App() {
   const init = {
@@ -8,8 +8,11 @@ function App() {
     setup: "",
     delivery: ""
   }
-  const [jokeObj, setJokeObj] = useState(init)
+  const [jokeObj, setJokeObj] = useState(init);
+  const [showDel, setShowDel] = useState(false);
+
   const getJoke = () => {
+    setShowDel(false)
     try {
       axios.get("https://v2.jokeapi.dev/joke/Any")
       .then(({data:{joke, setup, delivery}})=>{
@@ -24,12 +27,19 @@ function App() {
     }
   }
   
-  return (
-    <div className="App">
-      <div>{jokeObj.joke !== undefined ? <h1>{jokeObj.joke}</h1> : <h1>{jokeObj.setup - jokeObj.delivery}</h1>}</div>
-          <button onClick={getJoke}>Get Joke</button>
-    </div>
-  );
+  if (jokeObj.joke !== undefined) {
+    return (
+      <div className={"App"}>
+      <h1>{jokeObj.joke}</h1>
+      <button onClick={getJoke}>Get Joke</button>
+      </div>
+    )
+  } else {
+    return (<div className={"App"}><h1>{jokeObj.setup}</h1><hr/>
+    {showDel ? <h2>{jokeObj.delivery}</h2> : <button onClick={()=>setShowDel(true)}>Show</button>}
+    <hr/>
+    <button onClick={getJoke}>Get Joke</button></div>)
+  }
 }
 
 export default App;
