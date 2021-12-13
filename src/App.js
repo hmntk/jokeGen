@@ -45,7 +45,7 @@ function App() {
   } else {
     if (loading) {
       return (<div className={"App"}><div className={"container"}>
-      <h1>. . . loading</h1>
+      <h1>. . . .loading</h1>
       <button onClick={getJoke}>Get Joke</button>
       </div></div>)
     }
